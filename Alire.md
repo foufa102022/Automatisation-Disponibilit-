@@ -1,3 +1,17 @@
+# veuillez préparer une VM vierge Ubuntu server 22.04 (portant votre prénom comme hostname) contenant :
+- docker et docker compose
+- vagrant
+- terraform
+- un box vagrant generic/ubuntu2204
+- les images docker :
+      + portainer/portainer-ce      
+      + prom/prometheus
+      + grafana/grafana-oss
+      + prom/alertmanager
+      + quay.io/prometheus/node-exporter
+      + gcr.io/cadvisor/cadvisor
+# Examen Pratique: enoncé 
+
 Utilisez la VM-LAB déjà préparer portant votre prénom comme hostname pour effectuer
 les tâches suivantes :
 1. Activez l’accès par clés ssh à votre VM-LAB
