@@ -220,7 +220,20 @@ terraform apply
   * /etc/prometheus/alert-rules.yml
   * /etc/alertmanager/alertmanager.yml
   > pour voir le contenu de ces fichiers consulter le dossier **monitoring** !!
+# test de l'alerting 
+> pour tester l'alert manager on a fait une petite modification dans le alert-rules.yml pour tester le systeme d'alerting en cas ou  le disk utilisé est inferieur à 1%
 
+groups:
+  - name: example
+    rules:
+      - alert: FilesystemSpaceLow
+        expr: 100 - (100 * node_filesystem_avail_bytes / node_filesystem_size_bytes) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem space is running low"
+          description: "Filesystem space is running low on instance {{$labels.instance}}"
 
 
 
