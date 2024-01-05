@@ -1,0 +1,53 @@
+version: '3'
+
+volumes:
+  prometheus-data:
+    driver: local
+    
+  grafana-data:
+    driver: local
+    
+  alertmanager-data:
+    driver: local
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus  
+    volumes:
+      - /etc/prometheus:/etc/prometheus
+    command: " --config.file=/etc/prometheus/prometheus.yml"
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana  
+    
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    volumes:
+      - /etc/alertmanager:/etc/alertmanager
+    ports:
+      - "9093:9093"
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    container_name: node_exporter
+    command: "--path.rootfs=/host"
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+    ports:
+      - "9100:9100"
+
+  

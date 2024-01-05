@@ -1,0 +1,35 @@
+global:
+  resolve_timeout: 1m
+  #slack_api_url: 'https://hooks.slack.com/services/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'
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  receiver: 'lab-alert-manager'
+  repeat_interval: 1m
+receivers:
+  - name: 'lab-alert-manager'
+    slack_configs:
+      - send_resolved: true
+        #username: 'Alertmanager'
+        channel: '#infrastructure-disponibinlité'
+        api_url: 'https://hooks.slack.com/services/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'
+        #- name: 'lab-alert-manager'
+        # telegram_configs:
+        #- bot_token: lab_token
+        # api_url: https://api.telegram.org
+        #chat_id: -12345678
+        #parse_mode: ''
+        #send_resolved: true
+    email_configs:
+      - to: 'chetouiiftikhar@gmail.com'
+        from: 'chetouiiftikhar@gmail.com'
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: 'chetouiiftikhar@gmail.com'
+        auth_identity: 'chetouiiftikhar@gmail.com'
+        auth_password: 'bvht oaeh qrom xsiv'
+        send_resolved: true
+  # slack_configs:
+  # - channel: 'Chetoui Iftikhar'
+  #   send_resolved: true
+

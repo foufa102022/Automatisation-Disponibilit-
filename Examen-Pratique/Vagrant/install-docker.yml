@@ -1,0 +1,28 @@
+---
+- name: Configuration Docker
+  hosts: ubuntu22
+  become: true
+
+  tasks:
+    - name: Mise à jour des paquets
+      apt:
+        update_cache: yes
+
+    - name: Installation de Docker
+      apt:
+        name: docker.io
+        state: present
+      become: true
+
+    - name: Ajout de l'utilisateur vagrant au groupe docker
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Configuration pour permettre à l'utilisateur vagrant d'utiliser Docker sans sudo
+      lineinfile:
+        path: /etc/sudoers.d/vagrant_docker
+        line: 'vagrant ALL=(ALL) NOPASSWD: /usr/bin/docker'
+        state: present
+        create: yes

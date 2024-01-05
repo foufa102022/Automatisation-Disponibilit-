@@ -1,0 +1,11 @@
+groups:
+  - name: example
+    rules:
+      - alert: FilesystemSpaceLow
+        expr: 100 - (100 * node_filesystem_avail_bytes / node_filesystem_size_bytes) > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem space is running low"
+          description: "Filesystem space is running low on instance {{$labels.instance}}"

@@ -1,0 +1,53 @@
+---
+- name: Configure and Verify Docker
+  hosts: ubuntu22
+  become: true
+
+  tasks:
+
+    - name: Create directory for Docker service configuration
+      file:
+        path: /etc/systemd/system/docker.service.d
+        state: directory
+
+    - name: Create options.conf file
+      blockinfile:
+        path: /etc/systemd/system/docker.service.d/options.conf
+        block: |
+        
+          [Service]
+          ExecStart=
+          ExecStart=/usr/bin/dockerd -H unix:// -H tcp://0.0.0.0:2375
+        create: yes
+      notify: Reload Docker
+
+    - name: Create daemon.json.backup file
+      blockinfile:
+        path: /etc/docker/daemon.json.backup
+        block: |
+          {
+            "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+          }
+        create: yes
+      notify: Reload Docker
+
+    - name: Verify Docker service status
+      systemd:
+        name: docker
+        state: started
+
+    - name: Show Docker info if successful
+      debug:
+        var: docker_info.stdout_lines
+      when: docker_info.rc == 0
+
+  handlers:
+    - name: Reload Docker
+      systemd:
+        name: docker
+        state: reloaded
+
+    - name: Restart Docker
+      systemd:
+        name: docker
+        state: restarted
