@@ -223,7 +223,7 @@ terraform apply
 # test de l'alerting 
 > pour tester l'alert manager on a fait une petite modification dans le alert-rules.yml pour tester le systeme d'alerting en cas ou  le disk utilisé est inferieur à 1%
 
-groups:
+```groups:
   - name: example
     rules:
       - alert: FilesystemSpaceLow
@@ -234,6 +234,7 @@ groups:
         annotations:
           summary: "Filesystem space is running low"
           description: "Filesystem space is running low on instance {{$labels.instance}}"
+```
 
 
 
