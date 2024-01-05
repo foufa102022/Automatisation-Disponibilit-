@@ -36,6 +36,8 @@ services:
     container_name: alertmanager
     volumes:
       - /etc/alertmanager:/etc/alertmanager
+    command: " --config.file=/etc/alertmanager/alertmanager.yml --log.level=debug
+    restart: unless-stopped
     ports:
       - "9093:9093"
 
