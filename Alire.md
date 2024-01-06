@@ -34,7 +34,7 @@ conteneur salutation qui utilise le port 9999 comme port externe
 pour :
 - Monitorer le système linux de votre VM-LAB avec le dashboard grafana (id = 1860)
 - Envoyez une alerte (Gmail ou Discord ou Telegram) quand l'espace disk disponible
-est inferieur à 90%
+est inferieur à 10%
 Utilisez l’expression :
 100 - (100 * node_filesystem_avail_bytes / node_filesystem_size_bytes) > 90
 9. Mettez sur Github dans un entrepôt Examen-Pratique l’application Spring Boot et les
