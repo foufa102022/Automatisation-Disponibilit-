@@ -235,6 +235,26 @@ terraform apply
           summary: "Filesystem space is running low"
           description: "Filesystem space is running low on instance {{$labels.instance}}"
 ```
+- notre stack qui a été deployé par portaine:
+  <img width="671" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/60f7278c-e512-4900-a288-62bf82bc3893">
+ - tableau de board importer du VM par grafana
+ - 
+<img width="916" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/4763beca-b294-41f9-9faa-3e77de65055b">
+
+- si tout va bien prometheus detect les targets et les  regles d'alert ce qui est claire dans l'interface de prometheus:
+
+<img width="920" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/b16e1fde-b853-4241-8696-fdcaf8590a59">
+
+   
+<img width="925" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/18515f7b-7f8f-4354-a331-c6a630dcddc4">
+- alert manager l'agent de prometheus envoi l'alert selon sa configuration :
+
+<img width="419" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/fedc7dd4-5e90-4455-8f60-50233bb01c51">
+
+- Rapport des alertes envoyé dans l'interface de alert manager :
+
+<img width="893" alt="image" src="https://github.com/foufa102022/Automatisation-Disponibilit-/assets/115534833/76cfd4e1-2c8a-4580-923b-63701b0aa1bd">
+
 
 
 
